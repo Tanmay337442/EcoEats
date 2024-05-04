@@ -1,6 +1,6 @@
 from flask import Blueprint
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, EmailField, PasswordField
+from wtforms import StringField, SubmitField, EmailField, PasswordField, DateField
 from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms.widgets import TextArea
 
@@ -27,3 +27,13 @@ class UserUpdateForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired()])
     email = EmailField("Email", validators=[DataRequired()])
     update = SubmitField("Save changes")
+
+class UserUpdateForm(FlaskForm):
+    username = StringField("Username", validators=[DataRequired()])
+    email = EmailField("Email", validators=[DataRequired()])
+    update = SubmitField("Save changes")
+
+class FoodForm(FlaskForm):
+    name = StringField("Food Name", validators=[DataRequired()])
+    date = DateField("Expiry Date", validators=[DataRequired()])
+    submit = SubmitField("Save")

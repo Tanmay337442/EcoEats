@@ -1,9 +1,9 @@
 from flask import render_template, flash, redirect, url_for, Blueprint
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
-from datetime import datetime
-from forms import UserForm, LoginForm, UserUpdateForm
-from models import Users, db
+from datetime import datetime, date
+from forms import UserForm, LoginForm, UserUpdateForm, FoodForm
+from models import Users, Foods, db
 
 views = Blueprint('views', __name__)
 
@@ -11,7 +11,6 @@ views = Blueprint('views', __name__)
 def index():
     return render_template('index.html')
 
-# DO PART OF REGISTER WHERE USER MUST BE CREATED
 @views.route('/register', methods=['GET', 'POST'])
 def register():
     form = UserForm()
@@ -127,3 +126,100 @@ def logout():
     flash("You have been logged out",
           "alert alert-success alert-dismissible fade show")
     return redirect(url_for('views.login'))
+
+@views.route('/add-food', methods=['GET', 'POST'])
+@login_required
+def add_food():
+    form = FoodForm()
+    if form.validate_on_submit():
+        user = current_user.id
+        food = Foods(user_id=user, name=form.name.data, expiry_date=form.date.data)
+        db.session.add(food)
+        db.session.commit()
+        flash(f"{food.name} added",
+              "alert alert-success alert-dismissible fade show")
+        form.name.data = ''
+        form.date.data = ''
+        return redirect(url_for('views.foods'))
+    return render_template('add_food.html', form=form)
+
+@views.route('/foods/<int:id>')
+@login_required
+def food(id):
+    food = Foods.query.get_or_404(id)
+    if current_user.id == food.user.id:
+        return render_template('food.html', food=food)
+    else:
+        flash("Food does not exist",
+              "alert alert-danger alert-dismissible fade show")
+        return redirect(url_for('views.foods'))
+
+
+@views.route('/food/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def food_settings(id):
+    food = Foods.query.get_or_404(id)
+    if current_user.id == food.user.id:
+        form = FoodForm()
+        if form.validate_on_submit():
+            food.name = form.name.data
+            food.expiry_date = form.date.data
+            db.session.commit()
+            flash("Food updated",
+                  "alert alert-success alert-dismissible fade show")
+            return redirect(url_for('views.foods'))
+        form.name.data = food.name
+        form.date.data = food.expiry_date
+        return render_template('food_settings.html', form=form)
+    else:
+        flash("Food does not exist",
+              "alert alert-danger alert-dismissible fade show")
+        return redirect(url_for('views.foods'))
+
+
+@views.route('/foods/delete/<int:id>')
+@login_required
+def delete_food(id):
+    food_to_delete = Foods.query.get_or_404(id)
+    if current_user.id == food_to_delete.user.id:
+        try:
+            db.session.delete(food_to_delete)
+            db.session.commit()
+            flash("Food deleted",
+                  "alert alert-success alert-dismissible fade show")
+            return redirect(url_for('views.foods'))
+        except:
+            flash("Something went wrong... try again later",
+                  "alert alert-danger alert-dismissible fade show")
+            return redirect(url_for('views.foods'))
+    else:
+        flash("This course does not exist",
+              "alert alert-danger alert-dismissible fade show")
+        return redirect(url_for('views.foods'))
+
+
+@views.route('/foods')
+@login_required
+def foods():
+    foods = Foods.query.order_by(Foods.expiry_date)
+    createdfoods = []
+    for food in foods:
+        if current_user.id == food.user.id:
+            createdfoods.append(food)
+    return render_template('foods.html', foods=createdfoods)
+
+
+@views.route('/mail')
+@login_required
+def mail():
+    foods = Foods.query.order_by(Foods.expiry_date)
+    mails = []
+    expiry_dates = []
+    current = date.today()
+    for food in foods:
+        expiry = food.expiry_date.date()
+        delta = expiry - current
+        if current_user.id == food.user.id and delta.days >= 1 and delta.days <= 3:
+            print(delta)
+            mails.append(food)
+    return render_template('mail.html', mails=mails, date_current=current)

@@ -1,10 +1,9 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from models import Users, db
 from views import views
 from forms import forms
-from flask import render_template
 
 migrate = Migrate()
 

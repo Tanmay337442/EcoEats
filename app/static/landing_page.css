@@ -1,0 +1,57 @@
+html {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+.banner {
+    text-align: center;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 25vw;
+    background-color: rgba(151, 255, 175, 0.3);
+    backdrop-filter: blur(12px);
+    display: flex;
+    z-index: 2;
+    margin: 0;
+    position: sticky;
+    top: 0;
+}
+
+.bottom {
+    text-align: left;
+    align-items: left;
+    justify-content: flex-start;
+    padding-left: 15vw;
+    background-color: #C0FFEE;
+    backdrop-filter: blur(12px);
+    display: flex;
+    z-index: 2;
+    padding: 0;
+    font-size: medium;
+    position: relative;
+    margin: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.introduction{
+    margin-top: 50px;
+}
+
+.opacityAnimation{
+    animation-name: opacityAnimation;
+    position: absolute;
+    animation-duration: 1.5s;
+}
+
+@keyframes opacityAnimation {
+    from {opacity: 0.2;}
+    to {opacity: 1;}
+}
+
+.logo {
+    position: absolute;
+    margin-left: 50px;
+}

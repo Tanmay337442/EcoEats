@@ -13,7 +13,9 @@
 <body>
   {% set logged_in_items = [
     ('views.profile', 'profile', 'Profile'),
-    ('views.settings', 'settings', 'Settings')
+    ('views.settings', 'settings', 'Settings'),
+    ('views.foods', 'foods', 'Foods'),
+    ('views.mail', 'mail', 'mail')
   ] %}
   {% set logged_out_items = [
     ('views.login', 'login', 'Login'),
@@ -51,8 +53,8 @@
           {% endfor %}
           {% endif %}
         </ul>
-        {% if 'courses' == active %}
-        <a class="btn btn-primary" href="{{ url_for('views.add_course') }}">Add</a>
+        {% if 'foods' == active %}
+        <a class="btn btn-primary" href="{{ url_for('views.add_food') }}">Add</a>
         {% endif %}
       </div>
     </div>

@@ -13,6 +13,7 @@ class Users(db.Model, UserMixin):
     email = db.Column(db.String(100), nullable=False, unique=True)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
     password_hash = db.Column(db.String(128))
+    foods = db.relationship('Foods', backref='user')
 
     @property
     def password(self):
@@ -27,3 +28,10 @@ class Users(db.Model, UserMixin):
 
     def __repr__(self):
         return '<Username %r>' % self.username
+
+class Foods(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    expiry_date = db.Column(db.DateTime, nullable=False)
+    date_added = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
