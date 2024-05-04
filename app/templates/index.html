@@ -16,13 +16,20 @@
     <!--Title and Favicon-->
     <title>Title</title>
     <!-- <link rel="icon" type="image/x-icon" href=""> --> <!--URL for Facivon Image-->
-    
+    <script>
+        onmousemove = function(e){
+            // console.log("mouse location:", e.clientX, e.clientY);
+            document.getElementById("mouse").style.top = (e.clientY - 25) + "px"
+            document.getElementById("mouse").style.left = (e.clientX - 25) + "px"
+        }
+    </script>
 </head>
-<body>
+<body class="background">
     {% extends 'base.html' %}
     {% set active = 'index' %}
     {% block content %}
-    <div class="banner text-center opacity">
+    <div class="mouse-tracker", id="mouse"></div>
+    <div class="banner text-center opacityAnimation">
         <h1>Welcome to EcoEats</h1h1>
     </div>
     <p class = "introduction">Tired of seeing perfectly good food being thrown out? Wanting to manage your budget and <br> have your own
@@ -33,7 +40,7 @@
         ways of reducing food waste!
     </p><hr>
     <img id ="logo" href="../static/logo.png">
-    <h2> Why use EcoEats? </h2>
+    <h2 class = "font"> Why use EcoEats? </h2>
     <ul>
         <li>
             <strong>Reduce Waste:</strong> Say goodbye to wasting large amounts of food. EcoEats will make the most 
@@ -49,7 +56,7 @@
         </li>
     </ul>
     <hr><br>
-    <h2>How does it work? </h2>
+    <h2 class = "font">How does it work? </h2>
     <ol>
         <li> 
             <strong>Log Your Food:</strong> Easily input current foods and ingredients in your home and we'll do the rest!
@@ -74,9 +81,10 @@
             food waste!
         </li>
         
+        <!--
         <br><br><br><br><br><br><br><br><br>
-
         <h2 class="bottom">Together, let's waste less and eat better!<h2>
+        -->
 
     {% endblock %}
 </body>

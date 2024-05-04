@@ -117,7 +117,16 @@ def delete_user(id):
 @views.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html')
+    foods = Foods.query.order_by(Foods.expiry_date)
+    mails = []
+    current = date.today()
+    for food in foods:
+        expiry = food.expiry_date.date()
+        delta = expiry - current
+        if current_user.id == food.user.id and delta.days >= 1 and delta.days <= 3:
+            print(delta)
+            mails.append(food)
+    return render_template('profile.html', mails=mails, date_current=current)
 
 @views.route('/logout', methods=['GET', 'POST'])
 @login_required
@@ -209,17 +218,10 @@ def foods():
     return render_template('foods.html', foods=createdfoods)
 
 
-@views.route('/mail')
-@login_required
-def mail():
-    foods = Foods.query.order_by(Foods.expiry_date)
-    mails = []
-    expiry_dates = []
-    current = date.today()
-    for food in foods:
-        expiry = food.expiry_date.date()
-        delta = expiry - current
-        if current_user.id == food.user.id and delta.days >= 1 and delta.days <= 3:
-            print(delta)
-            mails.append(food)
-    return render_template('mail.html', mails=mails, date_current=current)
+@views.route('/analytics')
+def analytics():
+    return render_template('analytics.html')
+
+@views.route("/recipes")
+def recipes():
+    return render_template("recipes.html")

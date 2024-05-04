@@ -13,7 +13,9 @@ place for users to write feedback (rating system for recipies)
 
 create shopping lists based off what they need
 
-
+TODO
+gamification - lose points for wasted food, gain for food bank donations
+food bank donations
 
 
 Data Visualization: Implement data visualization tools to present users with clear insights into their food waste patterns. Charts, graphs, and interactive dashboards can help users visualize trends over time, such as which types of food are most frequently wasted or when waste tends to occur.
