@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet", type ="text/css", href="../static/landing_page.css">
+  <title>Coupon</title>
+
+</head>
+
+<body class="background pb-5 bg-dark">
+  {% extends 'base.html' %}
+  {% set active = 'coupons' %}
+  {% block content %}
+  <h1 class="banner blurAnimation", style="padding: 15px;">Coupons for {{ name }}</h1>
+  <br><br><br>
+  {% if name == "Food Basics" %}
+    <img height="650" width="350" src="../static/food_basics_flyers.jpg" alt="food basics">
+  {% elif name == "Costco" %}
+    <img height="650" width="350" src="../static/costco_coupons.jpg" alt="costco">
+  {% elif name == "Freshco" %}
+    <img height="350" width="650" src="../static/freshco_coupon.jpg" alt="freshco">
+  {% else %}
+    <img height="350" width="650" src="../static/walmart_coupon.jpg" alt="walmart">
+  {% endif %}
+  {% endblock %}
+</body>
+
+</html>

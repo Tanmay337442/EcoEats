@@ -15,12 +15,14 @@
     ('views.profile', 'profile', 'Profile'),
     ('views.settings', 'settings', 'Settings'),
     ('views.foods', 'foods', 'Foods'),
-    ('views.analytics', 'analytics', 'Analytics')
+    ('views.suggestions', "suggestions", "Suggestions"),
+    ('views.feedback', "feedback", "Feedback"),
+    ('views.coupons', 'coupons', 'Coupons'),
+    ('views.recipes', 'recipes', 'Recipes')
   ] %}
   {% set logged_out_items = [
     ('views.login', 'login', 'Login'),
     ('views.register', 'register', 'Register'),
-    ('views.analytics', 'analytics', 'Analytics')
   ] %}
   {% set active = active|default('views.index') %}
   

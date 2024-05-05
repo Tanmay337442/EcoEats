@@ -1,47 +1,97 @@
 html {
     margin: 0px;
     padding: 0px;
-    padding-left: 0px;
 }
 
 
 ::-webkit-scrollbar {
     width: 10px;
-    }
+}
 
-    /* Scroll track */
-    ::-webkit-scrollbar-track {
+/* Scroll track */
+::-webkit-scrollbar-track {
     box-shadow: inset 0 0 1.5px black; 
     border-radius: 10px;
-    }
+}
 
-    ::-webkit-scrollbar-thumb {
+/* Scroll bar handle */
+::-webkit-scrollbar-thumb {
     background: rgba(151, 255, 175, 1); 
     border-radius: 10px;
     }
 
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     background: rgba(51, 155, 75, 1); 
 }
 
-
 .background{
-    background: rgba(51, 155, 75, 0.3); 
+    background-image: url(logo3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.background2{
+    background-image: url(logo235.png); 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.recipes{
+    background-image: url(recipe.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+    margin-left: 0;
+    margin-top: 0;
+}
 
+.recipe-title{
+    text-align: left;
+    padding: 10px;
+    border-radius: 25px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    margin: 0px;
+    color: rgb(32, 114, 155);
+    width: auto;
+    position: fixed;
+    font-size: 250%;
+    font-weight: 425;
+    z-index: 3;
+}
+.recipe-title:hover{
+    text-align: left;
+    padding: 10px;
+    border-radius: 25px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    margin: 0px;
+    color: rgb(32, 114, 155);
+    width: auto;
+    position: fixed;
+    font-size: 250%;
+    font-weight: 425;
+    z-index: 3;
+}
+
+.white-text{
+    color: white;
 }
 
 .banner {
     text-align: center;
     font-family: "Ubuntu", sans-serif;
     border-radius: 5px;
-    align-items: center;
     justify-content: flex-start;
-    padding-left: 25vw;
-    background-image: url(static/logo.png);
     background-color: rgba(255, 255, 255, 0.3);
-    opacity: 0.45;
-    display: flex;
     backdrop-filter: blur(12px);
     display: flex;
     z-index: 2;
@@ -49,8 +99,29 @@ html {
     margin: 0px;
     top: 0px;
     margin-left: 0px;
+    padding: 5%;
     width: 100%;
-    height: 150px;
+    height: 75px;
+    color: black;
+}
+
+.text-center{
+    text-align: center;
+    align-items: center;
+}
+
+.backing {
+    text-align: center;
+    font-family: "Ubuntu", sans-serif;
+    border-radius: 5px;
+    justify-content: flex-start;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    backdrop-filter: blur(12px);
+    z-index: 2;
+    margin: 0px;
+    width: 85vw;
+    color: black;
 }
 
 .mouse-tracker{
@@ -68,6 +139,33 @@ html {
 
 .font{
     font-family: "Ubuntu", sans-serif;
+    padding: 5%;
+}
+
+.line-break {
+    padding: 5%;
+}
+
+.handwriting {
+  font-family: "Briem Hand", cursive;
+  font-optical-sizing: 650;
+  font-weight: 250; /* 100 - 900 */
+  font-style: normal;
+}
+
+.teachers {
+    font-family: "Teachers", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
+  
+.blur {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    padding: 15px;
 }
 
 .bottom {
@@ -92,14 +190,34 @@ html {
     margin-top: 50px;
 }
 
+.vignetteAnimation{
+    animation-name: vignetteAnimation;
+    animation-duration: 3.5s;
+}
+
 .opacityAnimation{
     animation-name: opacityAnimation;
+    animation-duration: 1.5s;
+}
+
+.blurAnimation{
+    animation-name: blurAnimation;
     animation-duration: 1.5s;
 }
 
 @keyframes opacityAnimation {
     from {opacity: 0.3;}
     to {opacity:1;}
+}
+
+@keyframes blurAnimation{
+    from {backdrop-filter: blur(1px);}
+    to {backdrop-filter: blur(12px);}
+}
+
+@keyframes vignetteAnimation {
+    from {backdrop-filter:saturate(0.25);}
+    to {backdrop-filter:saturate(1);}
 }
 
 .logo {

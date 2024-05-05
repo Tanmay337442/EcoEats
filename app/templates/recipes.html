@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" , type="text/css" , href="../static/landing_page.css">
+    <title>Coupons</title>
+
+</head>
+
+<body class="background pb-5 bg-dark">
+    {% extends 'base.html' %}
+    {% set active = 'recipes' %}
+    {% block content %}
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="{{ category }}">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+    </div>
+    {% endfor %}
+    <br>
+    <div class="card mx-auto" style="width: 26rem;">
+        <div class="card-body p-4">
+            <h3 class="mb-4">Recipes</h3>
+            <p>
+                Here are some AI generated recipe ideas based on the ingredients you have:
+            </p>
+            <p>Caesar salad</p>
+            <p>Spinach lasagna</p>
+            <p>Guacamole</p>
+            <button class="btn btn-primary">Generate new recipes</button>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

@@ -1,14 +1,14 @@
-from flask import render_template, flash, redirect, url_for, Blueprint
+from flask import render_template, flash, redirect, url_for, Blueprint, request
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
 from datetime import datetime, date
 from forms import UserForm, LoginForm, UserUpdateForm, FoodForm
 from models import Users, Foods, db
-from openai import OpenAI
+# from openai import OpenAI
 
-client = OpenAI(
-  api_key='sk-proj-bOn2aUe1oCoXwxtsVDePT3BlbkFJQN2LRI8Aj9hkBTepVwnq',
-)
+# client = OpenAI(
+#   api_key='sk-proj-bOn2aUe1oCoXwxtsVDePT3BlbkFJQN2LRI8Aj9hkBTepVwnq',
+# )
 
 views = Blueprint('views', __name__)
 
@@ -129,7 +129,6 @@ def profile():
         expiry = food.expiry_date.date()
         delta = expiry - current
         if current_user.id == food.user.id and delta.days >= 1 and delta.days <= 3:
-            print(delta)
             mails.append(food)
     return render_template('profile.html', mails=mails, date_current=current)
 
@@ -220,24 +219,34 @@ def foods():
     for food in foods:
         if current_user.id == food.user.id:
             createdfoods.append(food)
-    return render_template('foods.html', foods=createdfoods)
+    current = date.today()
+    return render_template('foods.html', foods=createdfoods, date_current=current)
 
 
 @views.route('/suggestions')
 @login_required
 def suggestions():
-    foods = Foods.query.order_by(Foods.expiry_date)
-    foods_expiring = []
-    current = date.today()
-    for food in foods:
-        expiry = food.expiry_date.date()
-        delta = expiry - current
-        if current_user.id == food.user.id and delta.days >= 1 and delta.days <= 3:
-            print(delta)
-            foods_expiring.append(food)
-    return render_template('suggestions.html', suggestion=None)
+    return render_template('suggestions.html')
 
+@views.route('/feedback', methods=['GET', 'POST'])
+@login_required
+def feedback():
+    if request.method == "POST":
+        return redirect(url_for("views.profile"))
+    return render_template('feedback.html')
 
-@views.route('/analytics')
-def analytics():
-    return render_template('analytics.html')
+@views.route("/coupons")
+@login_required
+def coupons():
+    return render_template("coupons.html")
+
+@views.route("/coupon/<int:id>")
+@login_required
+def coupon(id):
+    coupons = ["Food Basics", "Costco", "Freshco", "Walmart"]
+    return render_template("coupon.html", name=coupons[id-1])
+
+@views.route("/recipes")
+@login_required
+def recipes():
+    return render_template("recipes.html")

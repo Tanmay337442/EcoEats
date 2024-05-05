@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet", type ="text/css", href="../static/landing_page.css">
+  <title>Recipes</title>
+
+</head>
+
+<body class="background pb-5 bg-dark">
+  {% extends 'base.html' %}
+  {% set active = 'coupons' %}
+  {% block content %}
+  <h1 class="banner blurAnimation", style="padding: 15px">Coupons from our Partners</h1>
+  <br><br><br>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col">
+      <div class="card h-100">
+        <img src="static/food_basics.png" alt="food basics" class="card-img-top pt-3">
+        <div class="card-body">
+        </div>
+        <div class="card-footer bg-transparent">
+          <a href="{{ url_for('views.coupon', id=1) }}" class="btn btn-outline-primary btn-sm">See Coupon</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="static/costco.png" alt="Costco" class="card-img-top pt-3">
+        <div class="card-body">
+        </div>
+        <div class="card-footer bg-transparent">
+          <a href="{{ url_for('views.coupon', id=2) }}" class="btn btn-outline-primary btn-sm">See Coupon</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="static/freshco.png" alt="Freshco" class="card-img-top pt-3">
+        <div class="card-body">
+        </div>
+        <div class="card-footer bg-transparent">
+          <a href="{{ url_for('views.coupon', id=3) }}" class="btn btn-outline-primary btn-sm">See Coupon</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="static/walmart.jpg" alt="Walmart" class="card-img-top pt-3">
+        <div class="card-body">
+        </div>
+        <div class="card-footer bg-transparent">
+          <a href="{{ url_for('views.coupon', id=4) }}" class="btn btn-outline-primary btn-sm">See Coupon</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</body>
+
+</html>

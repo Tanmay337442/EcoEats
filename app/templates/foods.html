@@ -2,10 +2,11 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet", type ="text/css", href="../static/landing_page.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foods</title>
   </head>
-  <body>
+  <body class="background bg-dark white-text">
     {% extends 'base.html' %}
     {% set active = 'foods' %}
     {% block content %}
@@ -20,6 +21,31 @@
         <div class="row row-cols-1 row-cols-md-4 g-4">
           {% for food in foods %}
             <div class="col">
+              {% if (food.expiry_date.date() - date_current).days >= 1 and (food.expiry_date.date() - date_current).days <= 3 %}
+              <div class="card h-100 border border-warning border-5">
+                <div class="card-body">
+                  <h4><a href="{{ url_for('views.food', id=food.id) }}">{{ food.name }}</a></h4>
+                  <small>{{ food.expiry_date.date() }}</small>
+                  <br>
+                </div>
+                <div class="card-footer bg-transparent">
+                  <a href="{{ url_for('views.food_settings', id=food.id) }}" class="btn btn-outline-primary btn-sm">Edit Info</a>
+                  <a href="{{ url_for('views.delete_food', id=food.id) }}" class="btn btn-outline-danger btn-sm">Delete</a>
+                </div>
+              </div>
+              {% elif (food.expiry_date.date() - date_current).days < 1 %}
+              <div class="card h-100 border border-danger border-5">
+                <div class="card-body">
+                  <h4><a href="{{ url_for('views.food', id=food.id) }}">{{ food.name }}</a></h4>
+                  <small>{{ food.expiry_date.date() }}</small>
+                  <br>
+                </div>
+                <div class="card-footer bg-transparent">
+                  <a href="{{ url_for('views.food_settings', id=food.id) }}" class="btn btn-outline-primary btn-sm">Edit Info</a>
+                  <a href="{{ url_for('views.delete_food', id=food.id) }}" class="btn btn-outline-danger btn-sm">Delete</a>
+                </div>
+              </div>
+              {% else %}
               <div class="card h-100">
                 <div class="card-body">
                   <h4><a href="{{ url_for('views.food', id=food.id) }}">{{ food.name }}</a></h4>
@@ -31,6 +57,7 @@
                   <a href="{{ url_for('views.delete_food', id=food.id) }}" class="btn btn-outline-danger btn-sm">Delete</a>
                 </div>
               </div>
+              {% endif %}
             </div>
           {% endfor %}
         </div>
