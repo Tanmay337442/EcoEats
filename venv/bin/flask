@@ -1,4 +1,6 @@
-#!/Users/tanmay/Desktop/Code/Python/Flask/Flask_Login/venv/bin/python3.12
+#!/bin/sh
+'''exec' "/Users/tanmay/Desktop/Code/Python/Flask/Base App/venv/bin/python3.12" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -4,10 +4,13 @@ from flask_login import login_user, login_required, logout_user, current_user
 from datetime import datetime, date
 from forms import UserForm, LoginForm, UserUpdateForm, FoodForm
 from models import Users, Foods, db
-import openai
+from openai import OpenAI
+
+client = OpenAI(
+  api_key='sk-proj-bOn2aUe1oCoXwxtsVDePT3BlbkFJQN2LRI8Aj9hkBTepVwnq',
+)
 
 views = Blueprint('views', __name__)
-openai.apikey = "sk-proj-CRD4hPfQV04mFkItPL5zT3BlbkFJhAkRLE65U6vgiSTriyt3"
 
 @views.route('/')
 def index():
@@ -232,14 +235,9 @@ def suggestions():
         if current_user.id == food.user.id and delta.days >= 1 and delta.days <= 3:
             print(delta)
             foods_expiring.append(food)
-    
-    return render_template('suggestions.html', suggestion=suggestion)
+    return render_template('suggestions.html', suggestion=None)
 
 
 @views.route('/analytics')
 def analytics():
     return render_template('analytics.html')
-
-@views.route("/recipes")
-def recipes():
-    return render_template("recipes.html")
