@@ -1,6 +1,4 @@
-**EcoEats**
-################
-EcoEats is a new website where you can log the foods that you purchase
+**EcoEats** is a new website where you can log the foods that you purchase
 and we will remind you when they are about to expire. We also have resources
 to help people learn ot cook, provide nutritious recipes, and help them build a 
 community and connect with others
