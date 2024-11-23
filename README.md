@@ -1,4 +1,4 @@
-**EcoEats** is a Flask webapp designed for the 2024 UofT Engineers Without Borders Moral Code Hackathon. The app allows people to log the foods that they purchase, and notifies them when the food is about to expire. The app also has resources to help people learn to cook, and generates nutritious recipes based on available food using AI.
+**EcoEats** is a Flask webapp designed for the 2024 UofT Engineers Without Borders Moral Code Hackathon. The app allows people to log the foods that they purchase, and notifies them when the food is about to expire. The app also has resources to help people learn to cook, and generates nutritious recipes using AI, based on the food available.
 
 Features:
 - Date picker to set the expiry date of food
