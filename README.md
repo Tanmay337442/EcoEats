@@ -9,7 +9,11 @@ Features:
 Run the `__init__.py` file in the app folder, and navigate to localhost:5000 in your browser to view the app.
 
 Team Lead: Tanmay Paramekanti
+
 Other Members:
+
 Edwin Wen
+
 Jayden Wang
+
 Rayhan Jamasi
