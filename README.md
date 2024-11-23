@@ -1,23 +1,9 @@
-**EcoEats** is a new website where you can log the foods that you purchase
-and we will remind you when they are about to expire. We also have resources
-to help people learn ot cook, provide nutritious recipes, and help them build a 
-community and connect with others
+**EcoEats** is a Flask webapp designed for the 2024 UofT Engineers Without Borders Moral Code Hackathon. The app allows people to log the foods that they purchase, and notifies them when the food is about to expire. The app also has resources to help people learn to cook, and generates nutritious recipes based on available food using AI.
 
-date picker
-graphs and trends / ML analytics (such as which food is wasted often)
+Features:
+- Date picker to set the expiry date of food
+- Notifications when foods are about to expire
+- Meal planning - note, the AI feature is only for demonstration purposes, and is not functional because it requires an API key
+- Page to receive feedback on the app and how it can be improved
 
-notifications for expiry
-
-meal planninng features (user inputs current ingredients, AI reccomends meals)
-
-Each user can log their data in the website, (gamification) where people get rewarded
-for logging more, the algorithm can then recommend a recipe or a meal that takes into account
-the food that is available 
-
-place for users to write feedback (rating system for recipies)
-
-create shopping lists based off what they need
-
-TODO
-gamification - lose points for wasted food, gain for food bank donations
-food bank donations
+Run the `__init__.py` file in the app folder, and navigate to localhost:5000 in your browser to view the app.
